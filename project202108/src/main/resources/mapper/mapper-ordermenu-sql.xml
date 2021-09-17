@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="my.project.mapper.OrderMenuMapper">
+	<select id="selectOrderMenuList" resultType="my.project.dto.OrderMenuDto" parameterType="int">
+		<![CDATA[ 
+			SELECT idx, name, description, price, image FROM deliverymenu WHERE type = #{type}
+		]]>
+	</select>
+	
+	<!-- 추천 메뉴 가져오기 -->
+	<select id="selectRecommendOrderMenuList" resultType="my.project.dto.OrderMenuDto">
+		<![CDATA[ 
+			SELECT idx, name, description, price, image FROM deliverymenu WHERE recommend_count >= 30
+		]]>
+	</select>
+	
+	<select id="selectOrderMenuInfo" resultType="my.project.dto.OrderMenuDto" parameterType="int">
+		<![CDATA[ 
+			SELECT * FROM deliverymenu WHERE idx = #{idx}
+		]]>
+	</select>
+</mapper>
